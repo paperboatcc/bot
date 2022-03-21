@@ -14,24 +14,18 @@ module.exports = {
             let inguild = await message.guild.members.fetch(user)
         if(inguild) {
             if (mod.id == user.user.id) return message.channel.send(':x: | You can\'t ban yourself, silly!')
-            if (user.user.id === message.guild.ownerId)
-            return await message.channel.send(':x: | You can\'t ban the owner of the server');
-            if (user.permissions.has("BAN_MEMBERS")) return message.reply(":x: | You can't ban the selected user.")
+            if (user.user.id === message.guild.ownerId) return message.channel.send(':x: | You can\'t ban the owner of the server');
+            if (!member.bannable) return message.channel.send(":x: | You can't ban the selected user.")
 
             if (mod.user.id !== message.guild.ownerId) {
-                if (!mod.roles)
-                    return await message.channel.send(':x: | You can\'t ban the selected user.');
-                if (!(mod.roles.highest.position > member.roles.highest.position))
-                    return await message.channel.send(':x: | You can\'t ban the selected user.');
+                if (!mod.roles) return message.channel.send(':x: | You can\'t ban the selected user.');
+                if (!(mod.roles.highest.position > member.roles.highest.position)) return message.channel.send(':x: | You can\'t ban the selected user.');
             }
             if (user.user.id === message.guild.me.user.id)
             return await message.channel.send('Why are you trying to ban me? :(');
             if (!user.bannable) return message.channel.send(':x: | You can\'t ban the selected user.')
         }
-        } catch (error) {
-            
-        }
-        
+        } catch (error) {}
         let reason = args.slice(1).join(" ");
         if (!reason) {
             reason = "No reason specified (Banned by " + mod.user.tag +')'
@@ -46,6 +40,6 @@ module.exports = {
           } catch (error) {
               
           }
-          message.guild.members.ban(user, {reason: reason})
+          guild.members.ban(user, {reason: reason})
     }
 }

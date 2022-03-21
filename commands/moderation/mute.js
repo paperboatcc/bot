@@ -9,16 +9,12 @@ module.exports = {
         const member = await getMember(client, message, args[0], true);
         if (!member) return message.channel.send(':x: | User not found.')
         if (mod.id == member.user.id) return message.channel.send(':x: | You can\'t mute yourself, silly!')
-            if (member.user.id === message.guild.ownerId)
-            return await message.channel.send(':x: | You can\'t mute the owner of the server');
-
-            if (mod.user.id !== message.guild.ownerId) {
-                if (!mod.roles)
-                    return await message.channel.send(':x: | You can\'t mute the selected user.');
-                if (!(mod.roles.highest.position > member.roles.highest.position))
-                    return await message.channel.send(':x: | You can\'t mute the selected user.');
-        if (member.user.id === message.guild.me.user.id) return await message.channel.send('Why are you trying to mute me? :(');
-        if (!member.moderatable) return message.channel.send(':x: | You can\'t mute the selected user.')
+        if (member.user.id === message.guild.ownerId) return message.channel.send(':x: | You can\'t mute the owner of the server');
+        if (mod.user.id !== message.guild.ownerId) {
+            if (!mod.roles) return message.channel.send(':x: | You can\'t mute the selected user.');
+            if (!(mod.roles.highest.position > member.roles.highest.position)) return message.channel.send(':x: | You can\'t mute the selected user.');
+            if (member.user.id === message.guild.me.user.id) return message.channel.send('Why are you trying to mute me? :(');
+            if (!member.moderatable) return message.channel.send(':x: | You can\'t mute the selected user.')
             }
             let reason = args.slice(2).join(' ');
             let d;

@@ -14,11 +14,9 @@ module.exports = {
             if (member.permissions.has("KICK_MEMBERS")) return message.reply(":x: | You can't kick the selected user.")
 
             if (mod.user.id !== message.guild.ownerId) {
-                if (!mod.roles)
-                    return await message.channel.send(':x: | You can\'t kick the selected user.');
-                if (!(mod.roles.highest.position > member.roles.highest.position))
-                    return await message.channel.send(':x: | You can\'t kick the selected user.');
-        if (member.user.id === message.guild.me.user.id) return await message.channel.send('Why are you trying to kick me? :(');
+                if (!mod.roles) return  message.channel.send(':x: | You can\'t kick the selected user.');
+                if (!(mod.roles.highest.position > member.roles.highest.position)) return message.channel.send(':x: | You can\'t kick the selected user.');
+        if (member.user.id === message.guild.me.user.id) return message.channel.send('Why are you trying to kick me? :(');
         if (!member.kickable) return message.channel.send(':x: | You can\'t kick the selected user.')
             }
             let reason = args.slice(1).join(" ");
