@@ -6,6 +6,11 @@ const client = new Discord.Client({intents: 4685})
 
 client.commands = new Discord.Collection()
 client.prefix = '.'
+client.owners = [
+        '658586788721590273', //Antogamer#2810
+        '723086691266461737', //ParliamoDiPC#0001
+        '498434550347726850' //Fleny113#5835
+]
 const norcommandFolders = fs.readdirSync('./commands');
 for (const norfolder of norcommandFolders) {
         const norcommandFiles = fs
